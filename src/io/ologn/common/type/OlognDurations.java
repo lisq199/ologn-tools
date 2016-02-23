@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.util.Arrays;
 
 /**
- * Utilities for java.time.Duration objects.s
+ * Utilities for java.time.Duration objects.
  * @author lisq199
  */
 public class OlognDurations {
@@ -22,7 +22,7 @@ public class OlognDurations {
 		Duration avg = Duration.ZERO.plus(m[0]);
 		for (int i = 1; i < m.length; i++) {
 			// i is also the number of elements already counted
-			avg = avg.plus(m[i]).dividedBy(i + 1);
+			avg = avg.multipliedBy(i).plus(m[i]).dividedBy(i + 1);
 		}
 		return avg;
 	}
