@@ -1,5 +1,7 @@
 package io.ologn.common.color;
 
+import org.apache.commons.lang3.StringUtils;
+
 import io.ologn.common.function.TriFunction;
 
 /**
@@ -41,9 +43,13 @@ public enum CssColorType {
 		@Override
 		public String convert(String color) {
 			int[] rgbArray = getRgb(color);
-			return "#" + Integer.toHexString(rgbArray[0])
-					+ Integer.toHexString(rgbArray[1])
-					+ Integer.toHexString(rgbArray[2]);
+			String r = Integer.toHexString(rgbArray[0]);
+			String g = Integer.toHexString(rgbArray[1]);
+			String b = Integer.toHexString(rgbArray[2]);
+			r = StringUtils.leftPad(r, 2, '0');
+			g = StringUtils.leftPad(g, 2, '0');
+			b = StringUtils.leftPad(b, 2, '0');
+			return "#" + r + g + b;
 		}
 	},
 	RGB("rgb", "rgba") {

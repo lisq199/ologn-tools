@@ -106,7 +106,11 @@ public class ColorCategory {
 	 * @return
 	 */
 	public String getColor(int n) {
-		return new String(colorStrings[n % size()]);
+		int index = n % size();
+		if (index < 0) {
+			index += size();
+		}
+		return new String(colorStrings[index]);
 	}
 	
 	/**
