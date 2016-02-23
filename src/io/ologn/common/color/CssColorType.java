@@ -161,7 +161,7 @@ public enum CssColorType {
 	 * @return
 	 */
 	public boolean isTypeOf(String color) {
-		String lower = color.toLowerCase();
+		String lower = color.toLowerCase().trim();
 		if (!startsWithout.isEmpty() && lower.startsWith(startsWithout)) {
 			return false;
 		}
