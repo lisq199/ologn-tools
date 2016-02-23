@@ -306,10 +306,10 @@ public enum CssColorType {
 		} else {
 			TriFunction<Float, Float, Float, Float> hue2rgb = (p, q, t) -> {
 				if (t < 0) t += 1;
-	            if (t > 1) t -= 1;
-	            if (t < 1f / 6f) return p + (q - p) * 6 * t;
-	            if (t < 1f / 2f) return q;
-	            if (t < 2f / 3f) return p + (q - p) * (2f / 3f - t) * 6;
+				if (t > 1) t -= 1;
+				if (t < 1f / 6f) return p + (q - p) * 6 * t;
+				if (t < 1f / 2f) return q;
+				if (t < 2f / 3f) return p + (q - p) * (2f / 3f - t) * 6;
 				return p;
 			};
 			float q = l < 0.5f ? l * (1 + s) : l + s - l * s;
