@@ -94,12 +94,12 @@ public enum CssColorType {
 		protected int[] getHslArrayInternal(String color) {
 			return getIntArrayFromColorWithParen(color);
 		}
-
+		
 		@Override
 		protected float getAlphaInternal(String color) {
 			return 1;
 		}
-
+		
 		@Override
 		public String convert(String color) {
 			return createHsl(getHsl(color));
@@ -107,20 +107,20 @@ public enum CssColorType {
 	},
 	HSLA("hsla", "") {
 		@Override
+		protected int[] getRgbArrayInternal(String color) {
+			return getRgbArrayFromHslString(color);
+		}
+		
+		@Override
 		protected int[] getHslArrayInternal(String color) {
 			return getIntArrayFromColorWithParen(color);
 		}
 		
 		@Override
-		protected int[] getRgbArrayInternal(String color) {
-			return getRgbArrayFromHslString(color);
-		}
-
-		@Override
 		protected float getAlphaInternal(String color) {
 			return parseColorWithParen(color, 3);
 		}
-
+		
 		@Override
 		public String convert(String color) {
 			return createHsla(getAlpha(color), getHsl(color));
