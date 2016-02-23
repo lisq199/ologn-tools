@@ -23,9 +23,12 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("median of empty array");
 		}
-		int[] mm = m.clone();
-		if (!sorted) {
-			Arrays.sort(m);
+		int[] mm;
+		if (sorted) {
+			mm = m;
+		} else {
+			mm = m.clone();
+			Arrays.sort(mm);
 		}
 		int mid = mm.length / 2;
 		if (mm.length % 2 == 1) {
@@ -46,9 +49,12 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("median of empty array");
 		}
-		long[] mm = m.clone();
-		if (!sorted) {
-			Arrays.sort(m);
+		long[] mm;
+		if (sorted) {
+			mm = m;
+		} else {
+			mm = m.clone();
+			Arrays.sort(mm);
 		}
 		int mid = mm.length / 2;
 		if (mm.length % 2 == 1) {
@@ -69,9 +75,12 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("median of empty array");
 		}
-		float[] mm = m.clone();
-		if (!sorted) {
-			Arrays.sort(m);
+		float[] mm;
+		if (sorted) {
+			mm = m;
+		} else {
+			mm = m.clone();
+			Arrays.sort(mm);
 		}
 		int mid = mm.length / 2;
 		if (mm.length % 2 == 1) {
@@ -92,9 +101,12 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("median of empty array");
 		}
-		double[] mm = m.clone();
-		if (!sorted) {
-			Arrays.sort(m);
+		double[] mm;
+		if (sorted) {
+			mm = m;
+		} else {
+			mm = m.clone();
+			Arrays.sort(mm);
 		}
 		int mid = mm.length / 2;
 		if (mm.length % 2 == 1) {
