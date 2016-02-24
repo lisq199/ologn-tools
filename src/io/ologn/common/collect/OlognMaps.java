@@ -1,8 +1,8 @@
 package io.ologn.common.collect;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +21,7 @@ public class OlognMaps {
 	public static <K, V> Map<K, V> sortByValue(
 			Map<K, V> map, Comparator<Map.Entry<K, V>> c) {
 		List<Map.Entry<K, V>> list =
-				new LinkedList<Map.Entry<K, V>>(map.entrySet());
+				new ArrayList<Map.Entry<K, V>>(map.entrySet());
 		list.sort(c);
 		Map<K, V> result = new LinkedHashMap<K, V>();
 		for (Map.Entry<K, V> e : list) {
@@ -37,9 +37,14 @@ public class OlognMaps {
 	 * @return
 	 */
 	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(
-			Map<K, V> map) {
-		return sortByValue(map,
-				(e1, e2) -> e1.getValue().compareTo(e2.getValue()));
+			Map<K, V> map, boolean ascending) {
+		Comparator<Map.Entry<K, V>> c = null;
+		if (ascending) {
+			c = (e1, e2) -> e1.getValue().compareTo(e2.getValue());
+		} else {
+			c = (e1, e2) -> e2.getValue().compareTo(e1.getValue());
+		}
+		return sortByValue(map, c);
 	}
 
 }
