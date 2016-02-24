@@ -366,7 +366,7 @@ public enum CssColorType {
 	}
 	
 	/**
-	 * Convert RGB to HSV.
+	 * Convert RGB to HSV.<br>
 	 * Source of algorithm: <a href="http://axonflux.com/handy-rgb-to-hsl-and-rgb-to-hsv-color-model-c">link</a>
 	 * @param rgb please provide 3 parameters or an array of length 3. 
 	 * Extra parameters will be ignored.
@@ -403,7 +403,7 @@ public enum CssColorType {
 	}
 	
 	/**
-	 * Convert HSV to RGB.
+	 * Convert HSV to RGB.<br>
 	 * Source of algorithm: <a href="http://axonflux.com/handy-rgb-to-hsl-and-rgb-to-hsv-color-model-c">link</a>
 	 * @param hsv please provide 3 parameters or an array of length 3. 
 	 * Extra parameters will be ignored.
@@ -424,34 +424,22 @@ public enum CssColorType {
 		float t = v * (1 - (1 - f) * s);
 		switch (i % 6) {
 		case 0:
-			r = v;
-			g = t;
-			b = p;
+			r = v; g = t; b = p;
 			break;
 		case 1:
-			r = q;
-			g = v;
-			b = p;
+			r = q; g = v; b = p;
 			break;
 		case 2:
-			r = p;
-			g = v;
-			b = t;
+			r = p; g = v; b = t;
 			break;
 		case 3:
-			r = p;
-			g = q;
-			b = v;
+			r = p; g = q; b = v;
 			break;
 		case 4:
-			r = t;
-			g = p;
-			b = v;
+			r = t; g = p; b = v;
 			break;
 		case 5:
-			r = v;
-			g = p;
-			b = q;
+			r = v; g = p; b = q;
 			break;
 		default:
 			// This will never happen. It's here to silence a warning.

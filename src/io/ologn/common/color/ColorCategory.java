@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import io.ologn.common.math.LinearScale;
+
 /**
  * As the name suggests, this class is for storing categories of colors. 
  * Internally, colors are stored as CSS color strings (of any style), 
@@ -105,12 +107,24 @@ public class ColorCategory {
 	 * @param n
 	 * @return
 	 */
-	public String getColor(int n) {
-		int index = n % size();
+	public String getColor(long n) {
+		int index = (int) (n % size());
 		if (index < 0) {
 			index += size();
 		}
 		return new String(colorStrings[index]);
+	}
+	
+	/**
+	 * Get the color at a position. The position is the result of 
+	 * applying the specified LinearScale to the specified number.
+	 * @param n
+	 * @param scale
+	 * @return
+	 */
+	public String getColor(double n, LinearScale scale) {
+		long index = Math.round(scale.apply(n));
+		return getColor(index);
 	}
 	
 	/**
@@ -133,6 +147,12 @@ public class ColorCategory {
 		return builder.toString();
 	}
 	
+	/**
+	 * Initialize a ColorCategory object with a specified String 
+	 * array containing all the color strings.
+	 * @param colorStrings
+	 * @return
+	 */
 	public static ColorCategory initWithColorStrings(String[] colorStrings) {
 		return new ColorCategory(colorStrings);
 	}
@@ -149,12 +169,6 @@ public class ColorCategory {
 	 */
 	public static ColorCategory initWithHueRange(int start, int finish,
 			int s, int l, float a) {
-		return initWithColorStrings(getColorStringsFromHueRange(
-				start, finish, s, l, a));
-	}
-	
-	public static String[] getColorStringsFromHueRange(int start, int finish,
-			int s, int l, float a) {
 		List<String> colors = new ArrayList<String>();
 		if (start < finish) {
 			for (int i = start; i < finish; i++) {
@@ -165,7 +179,7 @@ public class ColorCategory {
 				colors.add(CssColorType.createHsla(a, i, s, l));
 			}
 		}
-		return colors.toArray(new String[0]);
+		return initWithColorStrings(colors.toArray(new String[0]));
 	}
 	
 }
