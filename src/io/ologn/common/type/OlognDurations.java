@@ -10,7 +10,8 @@ import java.util.Arrays;
 public class OlognDurations {
 	
 	/**
-	 * Get the average of a Duration array
+	 * Get the average of a Duration array. It calculates the average 
+	 * iteratively to prevent overflow.
 	 * @param m
 	 * @return
 	 */
@@ -18,11 +19,11 @@ public class OlognDurations {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("average of empty array");
 		}
-		// Set the average to the first element in the array
-		Duration avg = Duration.ZERO.plus(m[0]);
-		for (int i = 1; i < m.length; i++) {
-			// i is also the number of elements already counted
-			avg = avg.multipliedBy(i).plus(m[i]).dividedBy(i + 1);
+		Duration avg = Duration.ZERO;
+		int i = 0;
+		for (Duration d : m) {
+			avg = avg.plus(d.minus(avg).dividedBy(i));
+			i++;
 		}
 		return avg;
 	}
