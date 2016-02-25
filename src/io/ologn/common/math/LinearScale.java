@@ -2,6 +2,8 @@ package io.ologn.common.math;
 
 import java.util.function.Function;
 
+import io.ologn.common.OlognHashCode;
+
 /**
  * Inspired by d3.scale.linear(). Implemented mainly for choosing colors. 
  * The default domain and range are both [0, 1]. The methods are pretty 
@@ -142,7 +144,26 @@ public class LinearScale {
 	public double applyInverse(double x) {
 		return this.copy().invert().apply(x);
 	}
-
+	
+	@Override
+	public int hashCode() {
+		return OlognHashCode.init()
+				.addDouble(domainMin)
+				.addDouble(domainMax)
+				.addDouble(rangeMin)
+				.addDouble(rangeMax)
+				.get();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return OlognHashCode.defaultEquals(this, obj,
+				(a, b) -> a.getDomainMin() == b.getDomainMin()
+				&& a.getDomainMax() == b.getDomainMax()
+				&& a.getRangeMin() == b.getRangeMin()
+				&& a.getRangeMax() == b.getRangeMax());
+	}
+	
 	/**
 	 * Initialize a LinearScale object.
 	 * @return
