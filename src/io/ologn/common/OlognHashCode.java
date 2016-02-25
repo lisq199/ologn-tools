@@ -1,6 +1,7 @@
 package io.ologn.common;
 
 import java.util.Arrays;
+import java.util.function.BiFunction;
 
 /**
  * For easily generating hash codes.<br>
@@ -127,6 +128,24 @@ public class OlognHashCode {
 					"start and step must be non-zero");
 		}
 		return new OlognHashCode(start, step);
+	}
+	
+	/**
+	 * Default implementation of equals method.
+	 * @param t the original object. Most of the time, it will be "this".
+	 * @param obj the object that will be compared against
+	 * @param check a function that takes 2 objects of type T and 
+	 * returns a boolean. This is where the comparisons are made.
+	 * @return
+	 */
+	public static <T>boolean defaultEquals(T t, Object obj,
+			BiFunction<T, T, Boolean> check) {
+		if (obj == null || !t.getClass().isAssignableFrom(obj.getClass())) {
+			return false;
+		}
+		@SuppressWarnings("unchecked")
+		final T other = (T) obj;
+		return check.apply(t, other);
 	}
 
 }
