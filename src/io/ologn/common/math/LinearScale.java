@@ -112,7 +112,7 @@ public class LinearScale {
 	 * @return
 	 */
 	public Function<Double, Double> getMapping() {
-		return x -> this.apply(x);
+		return this.copy()::apply;
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public class LinearScale {
 	 * @return
 	 */
 	public Function<Double, Double> getInvertedMapping() {
-		return x -> this.applyInverse(x);
+		return this.copy()::applyInverse;
 	}
 	
 	/**
