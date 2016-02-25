@@ -111,6 +111,21 @@ public class OlognHashCode {
 		return this;
 	}
 	
+	@Override
+	public int hashCode() {
+		return init()
+				.addInt(result)
+				.addInt(step)
+				.get();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return defaultEquals(this, obj,
+				(a, b) -> a.result == b.result
+				&& a.step == b.step);
+	}
+	
 	public static OlognHashCode init() {
 		return new OlognHashCode();
 	}
