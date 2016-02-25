@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
  * Source of algorithm: <a href="http://developer.android.com/reference/java/lang/Object.html">link</a>
  * <br>
  * The methods are pretty self-explanatory.<br>
- * Typical usage: {@code OlognHashCode.init().addInt(a).addArray(b).get()}
+ * Typical usage: {@code OlognHashCode.init().addInt(a).addArray(b).get();}
  * @author lisq199
  */
 public class OlognHashCode {
@@ -102,10 +102,26 @@ public class OlognHashCode {
 		return addHash(Arrays.hashCode(f));
 	}
 	
+	/**
+	 * For deep primitive arrays and Object arrays.<br>
+	 * Uses Arrays.deepHashCode() instead of Arrays.hashCode()
+	 * @param f
+	 * @return
+	 */
+	public OlognHashCode addDeepArray(Object[] f) {
+		return addHash(Arrays.deepHashCode(f));
+	}
+	
 	public OlognHashCode addObject(Object f) {
 		return addHash(f == null ? 0 : f.hashCode());
 	}
-
+	
+	/**
+	 * If all the default methods don't work for you, you can always 
+	 * add your own hash with this method.
+	 * @param hash
+	 * @return
+	 */
 	public OlognHashCode addHash(int hash) {
 		result = step * result + hash;
 		return this;
@@ -126,6 +142,10 @@ public class OlognHashCode {
 				&& a.step == b.step);
 	}
 	
+	/**
+	 * Initialize
+	 * @return
+	 */
 	public static OlognHashCode init() {
 		return new OlognHashCode();
 	}

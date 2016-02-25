@@ -110,7 +110,10 @@ public class ColorCategory {
 	 * @return
 	 */
 	public String getColor(long n) {
+		// cast is safe because the result is less than size(), 
+		// which is an int.
 		int index = (int) (n % size());
+		// Just in case. Normally this will not happen.
 		if (index < 0) {
 			index += size();
 		}
@@ -129,6 +132,19 @@ public class ColorCategory {
 		return getColor(index);
 	}
 	
+	/**
+	 * Get a LinearScale that scales the numbers to work with the 
+	 * size of the current ColorCategory.
+	 * @param min the lower bound of the domain
+	 * @param max the upper bound of the domain
+	 * @return
+	 */
+	public LinearScale getLinearScale(double min, double max) {
+		return LinearScale.init()
+				.setDomain(min, max)
+				.setRange(0, this.size() - 1);
+	}
+
 	/**
 	 * @return another ColorCategory object where the order of colors is 
 	 * in reverse. This method does not modify the original object.
