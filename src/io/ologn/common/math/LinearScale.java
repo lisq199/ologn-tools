@@ -164,6 +164,13 @@ public class LinearScale {
 				&& a.getRangeMax() == b.getRangeMax());
 	}
 	
+	@Override
+	public String toString() {
+		return "LinearScale[domain: [" + getDomainMin() + ", "
+				+ getDomainMax() + "], range: [" + getRangeMin() + ", "
+				+ getRangeMax() + "]]"; 
+	}
+	
 	/**
 	 * Initialize a LinearScale object.
 	 * @return
