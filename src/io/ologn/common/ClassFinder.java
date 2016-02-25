@@ -12,8 +12,7 @@ import java.util.List;
  * Credit: <a href="http://www.dzone.com/snippets/get-all-classes-within-package">
  * link</a><br>
  * This class was created in an attempt to make it able to 
- * automatically run all the test classes within a package. 
- * It's so far not used.
+ * automatically run all the test classes within a package.
  * @author lisq199
  */
 public class ClassFinder {
