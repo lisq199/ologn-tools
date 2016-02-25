@@ -1,10 +1,12 @@
 package io.ologn.common.color;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import io.ologn.common.OlognHashCode;
 import io.ologn.common.math.LinearScale;
 
 /**
@@ -135,6 +137,19 @@ public class ColorCategory {
 		String[] colors = this.getColorStrings();
 		ArrayUtils.reverse(colors);
 		return initWithColorStrings(colors);
+	}
+	
+	@Override
+	public int hashCode() {
+		return OlognHashCode.init()
+				.addArray(colorStrings)
+				.get();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return OlognHashCode.defaultEquals(this, obj,
+				(a, b) -> Arrays.equals(a.colorStrings, b.colorStrings));
 	}
 	
 	@Override
