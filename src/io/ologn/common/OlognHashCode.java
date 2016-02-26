@@ -173,7 +173,7 @@ public class OlognHashCode {
 	 * returns a boolean. This is where the comparisons are made.
 	 * @return
 	 */
-	public static <T>boolean defaultEquals(T t, Object obj,
+	public static <T> boolean defaultEquals(T t, Object obj,
 			BiFunction<T, T, Boolean> check) {
 		if (obj == null || !t.getClass().isAssignableFrom(obj.getClass())) {
 			return false;
