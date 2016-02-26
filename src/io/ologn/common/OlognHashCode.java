@@ -117,7 +117,7 @@ public class OlognHashCode {
 	}
 	
 	/**
-	 * If all the default methods don't work for you, you can always 
+	 * If none the default methods works for you, you can always 
 	 * add your own hash with this method.
 	 * @param hash
 	 * @return
