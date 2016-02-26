@@ -135,13 +135,13 @@ public class ColorCategory {
 	/**
 	 * Get a LinearScale that scales the numbers to work with the 
 	 * size of the current ColorCategory.
-	 * @param min the lower bound of the domain
-	 * @param max the upper bound of the domain
+	 * @param domainMin the lower bound of the domain
+	 * @param domainMax the upper bound of the domain
 	 * @return
 	 */
-	public LinearScale getLinearScale(double min, double max) {
+	public LinearScale getLinearScale(double domainMin, double domainMax) {
 		return LinearScale.init()
-				.setDomain(min, max)
+				.setDomain(domainMin, domainMax)
 				.setRange(0, this.size() - 1);
 	}
 
