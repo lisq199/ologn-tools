@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang3.SystemUtils;
+
 /**
  * An enum for verifying Mac versions easily. This enum 
  * exists because some tests involve screenshots of  
@@ -94,7 +96,7 @@ public enum MacVersion implements OsVersion<MacVersion> {
 		 * Use startsWith instead of equals or contains to deal 
 		 * with minor releases such as 10.10.1.
 		 */
-		return OlognOs.getOsVersion().toLowerCase().startsWith(osVersion);
+		return SystemUtils.OS_VERSION.toLowerCase().startsWith(osVersion);
 	}
 	
 	/**

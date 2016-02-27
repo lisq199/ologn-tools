@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import org.apache.commons.lang3.SystemUtils;
+
 /**
  * Utilities for operating systems<br>
  * Inspired by: <a href="http://www.mkyong.com/java/how-to-detect-os-in-java-systemgetpropertyosname/">
@@ -14,37 +16,8 @@ import java.util.Scanner;
  */
 public class OlognOs {
 	
-	/**
-	 * System property os.name
-	 */
-	public static String getOsName() {
-		return System.getProperty("os.name");
-	}
-	
-	/**
-	 * System property os.arch
-	 */
-	public static String getOsArch() {
-		return System.getProperty("os.arch");
-	}
-	
-	/**
-	 * System property os.version
-	 */
-	public static String getOsVersion() {
-		return System.getProperty("os.version");
-	}
-	
-	/**
-	 * Get user home
-	 * @return
-	 */
-	public static String getUserHome() {
-		return System.getProperty("user.home");
-	}
-	
 	public static String getUserDesktop() {
-		return getUserHome() + File.separator + "Desktop";
+		return SystemUtils.USER_HOME + File.separator + "Desktop";
 	}
 	
 	/**

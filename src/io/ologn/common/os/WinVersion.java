@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang3.SystemUtils;
+
 /**
  * An enum for verifying Windows versions easily. This enum 
  * exists because some tests involve screenshots of Windows 
@@ -144,7 +146,7 @@ public enum WinVersion implements OsVersion<WinVersion> {
 		if (!OsName.WINDOWS.isCurrent() || inName == null) {
 			return false;
 		}
-		String osNameLower = OlognOs.getOsName().toLowerCase();
+		String osNameLower = SystemUtils.OS_NAME.toLowerCase();
 		boolean isCurrent = osNameLower.contains(inName);
 		if (notInName != null) {
 			isCurrent = isCurrent && !osNameLower.contains(notInName);

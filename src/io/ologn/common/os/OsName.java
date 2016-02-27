@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.apache.commons.lang3.SystemUtils;
+
 /**
  * An enum for OS names to make it easier to verify OSes.<br>
  * Inspired by: <a href="http://www.mkyong.com/java/how-to-detect-os-in-java-systemgetpropertyosname/">
@@ -78,7 +80,7 @@ public enum OsName {
 	 */
 	public boolean isCurrent() {
 		for (String name : namesToCheck) {
-			if (OlognOs.getOsName().toLowerCase().contains(name)) {
+			if (SystemUtils.OS_NAME.toLowerCase().contains(name)) {
 				return true;
 			}
 		}
