@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import io.ologn.common.type.OlognComparators;
+
 /**
  * Utilities for java.util.Map objects.
  * @author lisq199
@@ -17,18 +19,13 @@ public class OlognMaps {
 	 * Sort a map by its entries with a specified Comparator.
 	 * @param map
 	 * @param c
-	 * @param ascending
 	 * @return
 	 */
 	public static <K, V> Map<K, V> sortByEntry(
-			Map<K, V> map, Comparator<Map.Entry<K, V>> c, boolean ascending) {
+			Map<K, V> map, Comparator<Map.Entry<K, V>> c) {
 		List<Map.Entry<K, V>> list =
 				new ArrayList<Map.Entry<K, V>>(map.entrySet());
-		if (ascending) {
-			list.sort(c);
-		} else {
-			list.sort((a, b) -> c.compare(b, a));
-		}
+		list.sort(c);
 		Map<K, V> result = new LinkedHashMap<K, V>();
 		for (Map.Entry<K, V> e : list) {
 			result.put(e.getKey(), e.getValue());
@@ -40,26 +37,25 @@ public class OlognMaps {
 	 * Sort a map by its values with a specified Comparator
 	 * @param map
 	 * @param c
-	 * @param ascending
 	 * @return
 	 */
 	public static <K, V> Map<K, V> sortByValue(
-			Map<K, V> map, Comparator<V> c, boolean ascending) {
+			Map<K, V> map, Comparator<V> c) {
 		return sortByEntry(map,
-				(e1, e2) -> c.compare(e1.getValue(), e2.getValue()),
-				ascending);
+				(e1, e2) -> c.compare(e1.getValue(), e2.getValue()));
 	}
 	
 	/**
 	 * Sort a Map by its values with the default Comparator. The type of 
 	 * the values of the Map has to be Comparable.
 	 * @param map
-	 * @param ascending
+	 * @param naturalOrder
 	 * @return
 	 */
 	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(
-			Map<K, V> map, boolean ascending) {
-		return sortByValue(map, (a, b) -> a.compareTo(b), ascending);
+			Map<K, V> map, boolean naturalOrder) {
+		Comparator<V> c = OlognComparators.getFromComparable();
+		return sortByValue(map, naturalOrder ? c : c.reversed());
 	}
 	
 	/**
@@ -68,17 +64,11 @@ public class OlognMaps {
 	 * sorted forever
 	 * @param map
 	 * @param c
-	 * @param ascending
 	 * @return
 	 */
 	public static <K, V> Map<K, V> sortByKey(Map<K, V> map,
-			Comparator<K> c, boolean ascending) {
-		Map<K, V> result;
-		if (ascending) {
-			result = new TreeMap<K, V>(c);
-		} else {
-			result = new TreeMap<K, V>((a, b) -> c.compare(b, a));
-		}
+			Comparator<K> c) {
+		Map<K, V> result = new TreeMap<K, V>(c);
 		result.putAll(map);
 		return result;
 	}
@@ -89,12 +79,13 @@ public class OlognMaps {
 	 * Note: Since a TreeMap is used, the returned map will stay 
 	 * sorted forever
 	 * @param map
-	 * @param ascending
+	 * @param naturalOrder
 	 * @return
 	 */
 	public static <K extends Comparable<? super K>, V> Map<K, V> sortByKey(
-			Map<K, V> map, boolean ascending) {
-		return sortByKey(map, (a, b) -> a.compareTo(b), ascending);
+			Map<K, V> map, boolean naturalOrder) {
+		Comparator<K> c = OlognComparators.getFromComparable();
+		return sortByKey(map, naturalOrder ? c : c.reversed());
 	}
 
 }
