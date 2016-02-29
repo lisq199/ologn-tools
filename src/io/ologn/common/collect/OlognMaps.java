@@ -17,13 +17,18 @@ public class OlognMaps {
 	 * Sort a map by its entries with a specified Comparator.
 	 * @param map
 	 * @param c
+	 * @param ascending
 	 * @return
 	 */
 	public static <K, V> Map<K, V> sortByEntry(
-			Map<K, V> map, Comparator<Map.Entry<K, V>> c) {
+			Map<K, V> map, Comparator<Map.Entry<K, V>> c, boolean ascending) {
 		List<Map.Entry<K, V>> list =
 				new ArrayList<Map.Entry<K, V>>(map.entrySet());
-		list.sort(c);
+		if (ascending) {
+			list.sort(c);
+		} else {
+			list.sort((a, b) -> c.compare(b, a));
+		}
 		Map<K, V> result = new LinkedHashMap<K, V>();
 		for (Map.Entry<K, V> e : list) {
 			result.put(e.getKey(), e.getValue());
@@ -35,29 +40,26 @@ public class OlognMaps {
 	 * Sort a map by its values with a specified Comparator
 	 * @param map
 	 * @param c
+	 * @param ascending
 	 * @return
 	 */
 	public static <K, V> Map<K, V> sortByValue(
-			Map<K, V> map, Comparator<V> c) {
+			Map<K, V> map, Comparator<V> c, boolean ascending) {
 		return sortByEntry(map,
-				(e1, e2) -> c.compare(e1.getValue(), e2.getValue()));
+				(e1, e2) -> c.compare(e1.getValue(), e2.getValue()),
+				ascending);
 	}
 	
 	/**
 	 * Sort a Map by its values with the default Comparator. The type of 
 	 * the values of the Map has to be Comparable.
 	 * @param map
+	 * @param ascending
 	 * @return
 	 */
 	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(
 			Map<K, V> map, boolean ascending) {
-		Comparator<V> c = null;
-		if (ascending) {
-			c = (v1, v2) -> v1.compareTo(v2);
-		} else {
-			c = (v1, v2) -> v2.compareTo(v1);
-		}
-		return sortByValue(map, c);
+		return sortByValue(map, (a, b) -> a.compareTo(b), ascending);
 	}
 	
 	/**
@@ -66,10 +68,17 @@ public class OlognMaps {
 	 * sorted forever
 	 * @param map
 	 * @param c
+	 * @param ascending
 	 * @return
 	 */
-	public static <K, V> Map<K, V> sortByKey(Map<K, V> map, Comparator<K> c) {
-		Map<K, V> result = new TreeMap<K, V>(c);
+	public static <K, V> Map<K, V> sortByKey(Map<K, V> map,
+			Comparator<K> c, boolean ascending) {
+		Map<K, V> result;
+		if (ascending) {
+			result = new TreeMap<K, V>(c);
+		} else {
+			result = new TreeMap<K, V>((a, b) -> c.compare(b, a));
+		}
 		result.putAll(map);
 		return result;
 	}
@@ -85,13 +94,7 @@ public class OlognMaps {
 	 */
 	public static <K extends Comparable<? super K>, V> Map<K, V> sortByKey(
 			Map<K, V> map, boolean ascending) {
-		Comparator<K> c = null;
-		if (ascending) {
-			c = (k1, k2) -> k1.compareTo(k2);
-		} else {
-			c = (k1, k2) -> k2.compareTo(k1);
-		}
-		return sortByKey(map, c);
+		return sortByKey(map, (a, b) -> a.compareTo(b), ascending);
 	}
 
 }
