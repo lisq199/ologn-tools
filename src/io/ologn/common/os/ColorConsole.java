@@ -1,15 +1,18 @@
-package io.ologn.common.color;
+package io.ologn.common.os;
 
 import java.io.PrintStream;
 
 /**
  * Enum for ANSI color escape codes.<br>
- * Note: This does not work in Eclipse right now.<br>
- * Example: to print some text in red, use 
+ * Note:<br>
+ * 1. This does not work in Eclipse right now.<br>
+ * 2. This enum is intended to be very simple. For a more advanced 
+ * version, check out {@link AnsiEscCode}.<br>
+ * For example, to print some text in red, use 
  * {@code RED.println("red text")}.
  * @author lisq199
  */
-public enum AnsiTextColor {
+public enum ColorConsole {
 	
 	BLACK("\u001B[30m"),
 	RED("\u001B[31m"),
@@ -24,7 +27,7 @@ public enum AnsiTextColor {
 	
 	private String escapeCode;
 	
-	AnsiTextColor (String escapeCode) {
+	ColorConsole (String escapeCode) {
 		this.escapeCode = escapeCode;
 	}
 	
@@ -61,6 +64,15 @@ public enum AnsiTextColor {
 	}
 	
 	/**
+	 * Print a colored String with the current color to  
+	 * System.out using print() method
+	 * @param s
+	 */
+	public void print(String s) {
+		print(System.out, s);
+	}
+
+	/**
 	 * Print a colored String with the current color to a 
 	 * PrintStream using println() method
 	 * @param ps
@@ -68,15 +80,6 @@ public enum AnsiTextColor {
 	 */
 	public void println(PrintStream ps, String s) {
 		ps.println(createColoredString(s));
-	}
-	
-	/**
-	 * Print a colored String with the current color to  
-	 * System.out using print() method
-	 * @param s
-	 */
-	public void print(String s) {
-		print(System.out, s);
 	}
 	
 	/**
