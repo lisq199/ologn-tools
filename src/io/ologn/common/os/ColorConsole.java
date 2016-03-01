@@ -7,7 +7,7 @@ import java.io.PrintStream;
  * Note:<br>
  * 1. This does not work in Eclipse right now.<br>
  * 2. This enum is intended to be very simple. For a more advanced 
- * version, check out {@link AnsiEscCode}.<br>
+ * version, check out {@link AnsiSgrPrinter}.<br>
  * For example, to print some text in red, use 
  * {@code RED.println("red text")}.
  * @author lisq199

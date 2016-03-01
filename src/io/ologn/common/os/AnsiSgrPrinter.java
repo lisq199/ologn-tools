@@ -5,7 +5,7 @@ import java.io.PrintStream;
 /**
  * For specifying styles when printing to console.<br>
  * For example, to print "Hello World" with blue foreground and white 
- * background with the word "World" blinking, use:<br>
+ * background, and with the word "World" blinking, use:<br>
  * {@code init().addCode(FG_BLUE, BG_WHITE).addString("Hello")
  * .addCode(BLINK_SLOW).addString(" World").addReset().println();}
  * <br>
@@ -14,7 +14,7 @@ import java.io.PrintStream;
  * 2. This class does not add reset automatically.
  * @author lisq199
  */
-public class AnsiEscCode {
+public class AnsiSgrPrinter {
 	
 	public static final int
 			RESET = 0,
@@ -52,11 +52,13 @@ public class AnsiEscCode {
 			BG_DEFAULT = 49;
 	
 	public static final String ESC = "\033[";
-	public static final String RESET_STRING = "\033[0m";
+	public static final char END = 'm';
+	public static final char SEPARATOR = ';';
+	public static final String RESET_STRING = ESC + RESET + END;
 	
 	protected StringBuilder builder;
 	
-	protected AnsiEscCode() {
+	protected AnsiSgrPrinter() {
 		this.builder = new StringBuilder();
 	}
 	
@@ -65,38 +67,38 @@ public class AnsiEscCode {
 	 * @param s
 	 * @return
 	 */
-	public AnsiEscCode addString(String s) {
+	public AnsiSgrPrinter addString(String s) {
 		builder.append(s);
 		return this;
 	}
 	
 	/**
-	 * Add one or multiple ANSI escape codes. There are 
+	 * Add one or multiple SGR codes. There are 
 	 * pre-defined codes in this class, but you can always 
 	 * add your own.
 	 * @param codes
 	 * @return
 	 */
-	public AnsiEscCode addCode(int... codes) {
+	public AnsiSgrPrinter addCode(int... codes) {
 		boolean first = true;
 		for (int code : codes) {
 			if (first) {
 				builder.append(ESC);
 				first = false;
 			} else {
-				builder.append(';');
+				builder.append(SEPARATOR);
 			}
 			builder.append(code);
 		}
-		builder.append('m');
+		builder.append(END);
 		return this;
 	}
 	
 	/**
-	 * Add a reset code.
+	 * Add an SGR reset code.
 	 * @return
 	 */
-	public AnsiEscCode addReset() {
+	public AnsiSgrPrinter addReset() {
 		return addCode(RESET);
 	}
 	
@@ -137,8 +139,8 @@ public class AnsiEscCode {
 	 * Initialize
 	 * @return
 	 */
-	public static AnsiEscCode init() {
-		return new AnsiEscCode();
+	public static AnsiSgrPrinter init() {
+		return new AnsiSgrPrinter();
 	}
 
 }
