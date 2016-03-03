@@ -2,6 +2,7 @@ package io.ologn.common.collect;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +24,7 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("max of empty array");
 		}
-		return Arrays.stream(m).max(c).get();
+		return Collections.max(Arrays.asList(m), c);
 	}
 	
 	/**
@@ -35,7 +36,7 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("max of empty array");
 		}
-		return max(m, (x, y) -> x.compareTo(y));
+		return Collections.max(Arrays.asList(m));
 	}
 	
 	/**
@@ -48,7 +49,7 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("min of empty array");
 		}
-		return Arrays.stream(m).min(c).get();
+		return Collections.min(Arrays.asList(m), c);
 	}
 	
 	/**
@@ -60,7 +61,7 @@ public class OlognArrays {
 		if (m.length == 0) {
 			throw new IllegalArgumentException("min of empty array");
 		}
-		return min(m, (x, y) -> x.compareTo(y));
+		return Collections.min(Arrays.asList(m));
 	}
 	
 	/**
