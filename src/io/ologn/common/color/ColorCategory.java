@@ -75,6 +75,11 @@ public class ColorCategory {
 	public static final ColorCategory ORANGERED_TO_GREEN = initWithHueRange(
 			16, 120, 100, 50, 1);
 	
+	public static final String JS_RANDOM_COLOR =
+			"'rgb(' + (Math.floor(Math.random() * 256)) + ',' + "
+			+ "(Math.floor(Math.random() * 256)) + ',' + "
+			+ "(Math.floor(Math.random() * 256)) + ')'";
+	
 	/**
 	 * The array storing all the color strings
 	 */
