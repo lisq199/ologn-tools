@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import io.ologn.common.type.OlognComparators;
-
 /**
  * Utilities for java.util.Map objects.
  * @author lisq199
@@ -54,7 +52,7 @@ public class OlognMaps {
 	 */
 	public static <K, V extends Comparable<? super V>> Map<K, V> sortByValue(
 			Map<K, V> map, boolean naturalOrder) {
-		Comparator<V> c = OlognComparators.getFromComparable();
+		Comparator<V> c = (a, b) -> a.compareTo(b);
 		return sortByValue(map, naturalOrder ? c : c.reversed());
 	}
 	
@@ -84,7 +82,7 @@ public class OlognMaps {
 	 */
 	public static <K extends Comparable<? super K>, V> Map<K, V> sortByKey(
 			Map<K, V> map, boolean naturalOrder) {
-		Comparator<K> c = OlognComparators.getFromComparable();
+		Comparator<K> c = (a, b) -> a.compareTo(b);
 		return sortByKey(map, naturalOrder ? c : c.reversed());
 	}
 
