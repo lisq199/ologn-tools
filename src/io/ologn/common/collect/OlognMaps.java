@@ -2,6 +2,7 @@ package io.ologn.common.collect;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,6 +85,18 @@ public class OlognMaps {
 			Map<K, V> map, boolean naturalOrder) {
 		Comparator<K> c = (a, b) -> a.compareTo(b);
 		return sortByKey(map, naturalOrder ? c : c.reversed());
+	}
+	
+	/**
+	 * Invert a map
+	 * @param map
+	 * @return a new map whose keys are the values of the original 
+	 * map, and the values are the keys of the original map.
+	 */
+	public static <K, V> Map<V, K> invert(Map<K, V> map) {
+		Map<V, K> newMap = new HashMap<V, K>();
+		map.forEach((k, v) -> newMap.put(v, k));
+		return newMap;
 	}
 
 }
