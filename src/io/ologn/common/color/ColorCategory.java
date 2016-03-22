@@ -129,11 +129,11 @@ public class ColorCategory {
 	 * Get the color at a position. The position is the result of 
 	 * applying the specified LinearScale to the specified number.
 	 * @param n
-	 * @param scale
+	 * @param scale the scale will be ignored if it's set to null
 	 * @return
 	 */
 	public String getColor(double n, LinearScale scale) {
-		long index = Math.round(scale.apply(n));
+		long index = Math.round(scale == null ? n : scale.apply(n));
 		return getColor(index);
 	}
 	
