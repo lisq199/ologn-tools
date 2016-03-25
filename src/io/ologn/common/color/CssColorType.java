@@ -36,11 +36,6 @@ public enum CssColorType {
 		}
 
 		@Override
-		protected float getAlphaInternal(String color) {
-			return 1;
-		}
-
-		@Override
 		public String convert(String color) {
 			int[] rgbArray = getRgb(color);
 			String r = Integer.toHexString(rgbArray[0]);
@@ -56,11 +51,6 @@ public enum CssColorType {
 		@Override
 		protected int[] getRgbArrayInternal(String color) {
 			return getIntArrayFromColorWithParen(color);
-		}
-
-		@Override
-		protected float getAlphaInternal(String color) {
-			return 1;
 		}
 
 		@Override
@@ -93,11 +83,6 @@ public enum CssColorType {
 		@Override
 		protected int[] getHslArrayInternal(String color) {
 			return getIntArrayFromColorWithParen(color);
-		}
-		
-		@Override
-		protected float getAlphaInternal(String color) {
-			return 1;
 		}
 		
 		@Override
@@ -148,7 +133,9 @@ public enum CssColorType {
 		return rgbToHsl(getRgbArrayInternal(color));
 	}
 	
-	protected abstract float getAlphaInternal(String color);
+	protected float getAlphaInternal(String color) {
+		return 1;
+	}
 	
 	/**
 	 * Convert a CSS color string to the current CssColorType. For example, to 
@@ -501,7 +488,7 @@ public enum CssColorType {
 	protected static int[] getIntArrayFromColorWithParen(String color) {
 		int[] rgbArray = new int[3];
 		for (int i = 0; i < rgbArray.length; i++) {
-			rgbArray[i] = (int) parseColorWithParen(color, i);
+			rgbArray[i] = (int) Math.round(parseColorWithParen(color, i));
 		}
 		return rgbArray;
 	}
