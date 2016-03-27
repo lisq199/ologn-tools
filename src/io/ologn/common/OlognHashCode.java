@@ -13,15 +13,19 @@ import java.util.function.BiFunction;
  */
 public class OlognHashCode {
 	
+	protected static final int DEFAULT_START = 37;
+	protected static final int DEFAULT_STEP = 31;
+	
 	protected int result;
 	protected int step;
 	
-	protected OlognHashCode() {
-		result = 37;
-		step = 31;
-	}
+	/**
+	 * Disable default constructor
+	 */
+	protected OlognHashCode() {}
 	
 	protected OlognHashCode(int start, int step) {
+		this();
 		this.result = start;
 		this.step = step;
 	}
@@ -147,7 +151,7 @@ public class OlognHashCode {
 	 * @return
 	 */
 	public static OlognHashCode init() {
-		return new OlognHashCode();
+		return new OlognHashCode(DEFAULT_START, DEFAULT_STEP);
 	}
 	
 	/**

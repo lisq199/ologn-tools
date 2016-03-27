@@ -9,7 +9,7 @@ import java.math.BigInteger;
 public class OlognMath {
 	
 	/**
-	 * Check if a is between b and c (exclusive).
+	 * Check if a is between b and c
 	 * @param a
 	 * @param b
 	 * @param c
@@ -26,7 +26,7 @@ public class OlognMath {
 	}
 	
 	/**
-	 * Check if a is between b and c (exclusive).
+	 * Check if a is between b and c
 	 * @param a
 	 * @param b
 	 * @param c
