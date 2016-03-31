@@ -157,7 +157,7 @@ public class LinearScale {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return OlognHashCode.defaultEquals(this, obj,
+		return OlognHashCode.equals(this, obj,
 				(a, b) -> a.getDomainMin() == b.getDomainMin()
 				&& a.getDomainMax() == b.getDomainMax()
 				&& a.getRangeMin() == b.getRangeMin()

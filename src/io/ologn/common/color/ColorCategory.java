@@ -169,7 +169,7 @@ public class ColorCategory {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return OlognHashCode.defaultEquals(this, obj,
+		return OlognHashCode.equals(this, obj,
 				(a, b) -> Arrays.equals(a.colorStrings, b.colorStrings));
 	}
 	
