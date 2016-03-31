@@ -333,7 +333,7 @@ public enum CssColorType {
 		max = Math.max(max, b);
 		float min = Math.min(r, g);
 		min = Math.min(min, b);
-		float h = 0, s, l = (max + min) / 2;
+		float h, s, l = (max + min) / 2;
 		if (max == min) {
 			h = s = 0;
 		} else {
