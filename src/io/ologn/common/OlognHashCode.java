@@ -14,20 +14,20 @@ import java.util.function.BiFunction;
 public class OlognHashCode {
 	
 	protected static final int DEFAULT_START = 37;
-	protected static final int DEFAULT_STEP = 31;
+	protected static final int DEFAULT_PRIME = 31;
 	
 	protected int result;
-	protected int step;
+	protected int prime;
 	
 	/**
 	 * Disable default constructor
 	 */
 	protected OlognHashCode() {}
 	
-	protected OlognHashCode(int start, int step) {
+	protected OlognHashCode(int start, int prime) {
 		this();
 		this.result = start;
-		this.step = step;
+		this.prime = prime;
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public class OlognHashCode {
 	 * @return
 	 */
 	public OlognHashCode addHash(int hash) {
-		result = step * result + hash;
+		result = prime * result + hash;
 		return this;
 	}
 	
@@ -135,7 +135,7 @@ public class OlognHashCode {
 	public int hashCode() {
 		return init()
 				.addInt(result)
-				.addInt(step)
+				.addInt(prime)
 				.get();
 	}
 	
@@ -143,7 +143,7 @@ public class OlognHashCode {
 	public boolean equals(Object obj) {
 		return equals(this, obj,
 				(a, b) -> a.result == b.result
-				&& a.step == b.step);
+				&& a.prime == b.prime);
 	}
 	
 	/**
@@ -151,22 +151,22 @@ public class OlognHashCode {
 	 * @return
 	 */
 	public static OlognHashCode init() {
-		return new OlognHashCode(DEFAULT_START, DEFAULT_STEP);
+		return new OlognHashCode(DEFAULT_START, DEFAULT_PRIME);
 	}
 	
 	/**
-	 * Initialize with specified start and step values
+	 * Initialize with specified start and prime values
 	 * @param start the value the resulting hash code starts with
-	 * @param step the value that is going to be multiplied each time 
+	 * @param prime the value that is going to be multiplied each time 
 	 * a new field is added.
 	 * @return
 	 */
-	public static OlognHashCode init(int start, int step) {
-		if (start == 0 || step == 0) {
+	public static OlognHashCode init(int start, int prime) {
+		if (start == 0 || prime == 0) {
 			throw new IllegalArgumentException(
 					"start and step must be non-zero");
 		}
-		return new OlognHashCode(start, step);
+		return new OlognHashCode(start, prime);
 	}
 	
 	/**

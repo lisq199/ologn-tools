@@ -202,7 +202,7 @@ public enum CssColorType {
 	 */
 	public static String createRgb(int... rgb) {
 		if (rgb.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		return "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
 	}
@@ -216,7 +216,7 @@ public enum CssColorType {
 	 */
 	public static String createRgba(float alpha, int... rgb) {
 		if (rgb.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ","
 				+ alpha + ")";
@@ -230,7 +230,7 @@ public enum CssColorType {
 	 */
 	public static String createHsl(int... hsl) {
 		if (hsl.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		return "hsl(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%)";
 	}
@@ -244,7 +244,7 @@ public enum CssColorType {
 	 */
 	public static String createHsla(float alpha, int... hsl) {
 		if (hsl.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		return "hsla(" + hsl[0] + "," + hsl[1] + "%," + hsl[2] + "%,"
 				+ alpha + ")";
@@ -288,7 +288,7 @@ public enum CssColorType {
 	 */
 	public static int[] hslToRgb(int... hsl) {
 		if (hsl.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		float r, g, b;
 		float h = hsl[0] / 360f;
@@ -324,7 +324,7 @@ public enum CssColorType {
 	 */
 	public static int[] rgbToHsl(int... rgb) {
 		if (rgb.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		float r = rgb[0] / 255f;
 		float g = rgb[1] / 255f;
@@ -361,7 +361,7 @@ public enum CssColorType {
 	 */
 	public static int[] rgbToHsv(int... rgb) {
 		if (rgb.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		float r = rgb[0] / 255f;
 		float g = rgb[1] / 255f;
@@ -398,7 +398,7 @@ public enum CssColorType {
 	 */
 	public static int[] hsvToRgb(int... hsv) {
 		if (hsv.length < 3) {
-			throw new IllegalArgumentException();
+			illegalLength();
 		}
 		float h = hsv[0] / 360f;
 		float s = hsv[1] / 100f;
@@ -511,6 +511,10 @@ public enum CssColorType {
 	 */
 	protected static int[] getHslArrayFromRgbString(String color) {
 		return rgbToHsl(getIntArrayFromColorWithParen(color));
+	}
+	
+	protected static void illegalLength() {
+		throw new IllegalArgumentException("Illegal argument length");
 	}
 	
 }
