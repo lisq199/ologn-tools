@@ -164,7 +164,7 @@ public class OlognHashCode {
 	public static OlognHashCode init(int start, int prime) {
 		if (start == 0 || prime == 0) {
 			throw new IllegalArgumentException(
-					"start and step must be non-zero");
+					"parameters must be non-zero");
 		}
 		return new OlognHashCode(start, prime);
 	}
