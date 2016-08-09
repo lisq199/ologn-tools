@@ -23,55 +23,51 @@ public class ColorCategory {
 	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
 	 * link</a>
 	 */
-	public static final String[] D3_CATEGORY10_STRINGS = {
-		"#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
-		"#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
-	};
-	
-	/**
-	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
-	 * link</a>
-	 */
-	public static final String[] D3_CATEGORY20_STRINGS = {
-		"#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c",
-		"#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5",
-		"#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f",
-		"#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"
-	};
-
-	/**
-	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
-	 * link</a>
-	 */
-	public static final String[] D3_CATEGORY20B_STRINGS = {
-		"#393b79", "#5254a3", "#6b6ecf", "#9c9ede", "#637939",
-		"#8ca252", "#b5cf6b", "#cedb9c", "#8c6d31", "#bd9e39",
-		"#e7ba52", "#e7cb94", "#843c39", "#ad494a", "#d6616b",
-		"#e7969c", "#7b4173", "#a55194", "#ce6dbd", "#de9ed6"
-	};
-
-	/**
-	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
-	 * link</a>
-	 */
-	public static final String[] D3_CATEGORY20C_STRINGS = {
-		"#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#e6550d",
-		"#fd8d3c", "#fdae6b", "#fdd0a2", "#31a354", "#74c476",
-		"#a1d99b", "#c7e9c0", "#756bb1", "#9e9ac8", "#bcbddc",
-		"#dadaeb", "#636363", "#969696", "#bdbdbd", "#d9d9d9"
-	};
-	
 	public static final ColorCategory D3_CATEGORY10 = initWithColorStrings(
-			D3_CATEGORY10_STRINGS);
+			new String[] {
+				"#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd",
+				"#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
+			});
+	
+	/**
+	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
+	 * link</a>
+	 */
 	public static final ColorCategory D3_CATEGORY20 = initWithColorStrings(
-			D3_CATEGORY20_STRINGS);
+			new String[] {
+				"#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c",
+				"#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5",
+				"#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f",
+				"#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"
+			});
+	
+	/**
+	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
+	 * link</a>
+	 */
 	public static final ColorCategory D3_CATEGORY20B = initWithColorStrings(
-			D3_CATEGORY20B_STRINGS);
+			new String[] {
+				"#393b79", "#5254a3", "#6b6ecf", "#9c9ede", "#637939",
+				"#8ca252", "#b5cf6b", "#cedb9c", "#8c6d31", "#bd9e39",
+				"#e7ba52", "#e7cb94", "#843c39", "#ad494a", "#d6616b",
+				"#e7969c", "#7b4173", "#a55194", "#ce6dbd", "#de9ed6"
+			});
+	
+	/**
+	 * Source: <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">
+	 * link</a>
+	 */
 	public static final ColorCategory D3_CATEGORY20C = initWithColorStrings(
-			D3_CATEGORY20C_STRINGS);
+			new String[] {
+				"#3182bd", "#6baed6", "#9ecae1", "#c6dbef", "#e6550d",
+				"#fd8d3c", "#fdae6b", "#fdd0a2", "#31a354", "#74c476",
+				"#a1d99b", "#c7e9c0", "#756bb1", "#9e9ac8", "#bcbddc",
+				"#dadaeb", "#636363", "#969696", "#bdbdbd", "#d9d9d9"
+			});
 	
 	public static final ColorCategory RED_TO_GREEN = initWithHueRange(
 			0, 120, 100, 50, 1);
+	
 	public static final ColorCategory ORANGERED_TO_GREEN = initWithHueRange(
 			16, 120, 100, 50, 1);
 	
@@ -119,7 +115,7 @@ public class ColorCategory {
 		// which is an int.
 		int index = (int) (n % size());
 		// Just in case. Normally this will not happen.
-		if (index < 0) {
+		while (index < 0) {
 			index += size();
 		}
 		return new String(colorStrings[index]);

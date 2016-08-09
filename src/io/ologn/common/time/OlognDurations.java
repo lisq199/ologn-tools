@@ -1,4 +1,4 @@
-package io.ologn.common.type;
+package io.ologn.common.time;
 
 import java.time.Duration;
 import java.util.Arrays;

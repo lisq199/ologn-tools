@@ -17,7 +17,7 @@ import org.apache.commons.lang3.SystemUtils;
 public class OlognOs {
 	
 	public static String getUserDesktop() {
-		return SystemUtils.USER_HOME + File.separator + "Desktop";
+		return new File(SystemUtils.USER_HOME, "Desktop").getAbsolutePath();
 	}
 	
 	/**

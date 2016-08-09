@@ -98,5 +98,34 @@ public class OlognMaps {
 		map.forEach((k, v) -> newMap.put(v, k));
 		return newMap;
 	}
+	
+	/**
+	 * Get a Map with Integer keys from a List
+	 * @param list
+	 * @return
+	 */
+	public static <V> Map<Integer, V> fromList(List<V> list) {
+		Map<Integer, V> result = new TreeMap<Integer, V>(Integer::compare);
+		int i = 0;
+		for (V v : list) {
+			result.put(i, v);
+			i++;
+		}
+		return result;
+	}
+	
+	/**
+	 * Increase the value of a key by n. The type of the value must be 
+	 * Integer.
+	 * @param map
+	 * @param key
+	 * @param n
+	 */
+	public static <K> void increment(Map<K, Integer> map, K key, int n) {
+		if (!map.containsKey(key)) {
+			return;
+		}
+		map.put(key, map.get(key) + 1);
+	}
 
 }
