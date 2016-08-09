@@ -94,9 +94,9 @@ public class OlognMaps {
 	 * map, and the values are the keys of the original map.
 	 */
 	public static <K, V> Map<V, K> invert(Map<K, V> map) {
-		Map<V, K> newMap = new HashMap<V, K>();
-		map.forEach((k, v) -> newMap.put(v, k));
-		return newMap;
+		Map<V, K> result = new HashMap<V, K>();
+		map.forEach((k, v) -> result.put(v, k));
+		return result;
 	}
 	
 	/**
@@ -125,7 +125,7 @@ public class OlognMaps {
 		if (!map.containsKey(key)) {
 			return;
 		}
-		map.put(key, map.get(key) + 1);
+		map.put(key, map.get(key) + n);
 	}
 
 }
