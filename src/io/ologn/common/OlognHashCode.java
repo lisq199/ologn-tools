@@ -179,6 +179,9 @@ public class OlognHashCode {
 	 */
 	public static <T> boolean equals(T t, Object obj,
 			BiFunction<T, T, Boolean> check) {
+		if (t == obj) {
+			return true;
+		}
 		if (obj == null || !t.getClass().isAssignableFrom(obj.getClass())) {
 			return false;
 		}
